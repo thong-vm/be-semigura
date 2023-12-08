@@ -44,8 +44,6 @@ C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\HotChocolate.Validatio
 C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\Humanizer.dll
 C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\IdGen.dll
 C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\Microsoft.AspNetCore.Authorization.dll
-C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\Microsoft.AspNetCore.Metadata.dll
 C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\Microsoft.AspNetCore.SpaProxy.dll
 C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
@@ -57,7 +55,6 @@ C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\Microsoft.EntityFramew
 C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
 C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
 C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\Microsoft.Extensions.DiagnosticAdapter.dll
-C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\Microsoft.Identity.Client.dll
 C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\WORK\semigura\be-semigura\be-semigura\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll

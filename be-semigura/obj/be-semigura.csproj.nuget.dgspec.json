@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\WORK\\semigura\\be-semigura\\be-semigura\\be-semigura.csproj": {}
+    "c:\\WORK\\semigura\\be-semigura\\be-semigura\\be-semigura.csproj": {}
   },
   "projects": {
-    "C:\\WORK\\semigura\\be-semigura\\be-semigura\\be-semigura.csproj": {
+    "c:\\WORK\\semigura\\be-semigura\\be-semigura\\be-semigura.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\WORK\\semigura\\be-semigura\\be-semigura\\be-semigura.csproj",
+        "projectUniqueName": "c:\\WORK\\semigura\\be-semigura\\be-semigura\\be-semigura.csproj",
         "projectName": "be-semigura",
-        "projectPath": "C:\\WORK\\semigura\\be-semigura\\be-semigura\\be-semigura.csproj",
+        "projectPath": "c:\\WORK\\semigura\\be-semigura\\be-semigura\\be-semigura.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\WORK\\semigura\\be-semigura\\be-semigura\\obj\\",
+        "outputPath": "c:\\WORK\\semigura\\be-semigura\\be-semigura\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -70,10 +70,6 @@
               "version": "[3.0.3, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
-              "target": "Package",
-              "version": "[6.0.16, )"
-            },
-            "Microsoft.AspNetCore.Authorization": {
               "target": "Package",
               "version": "[6.0.16, )"
             },
