@@ -9,38 +9,6 @@ namespace GraphQL
 {
     public class Mutation
     {
-        public async Task<Models.File?> UploadFileAsync([Service] TRepository<Models.File, ApplicationDbContext> repo, IFile file, string? id)
-        {
-            FileRepository fileRepo = (FileRepository)repo;
-
-            var fileName = file.Name;
-            _ = file.Length;
-
-
-            //await using Stream stream = file.OpenReadStream();
-            //var ms = new MemoryStream();
-            //await file.CopyToAsync(ms);
-            //var buffer = ms.ToArray();
-
-            var savedPath = System.IO.Path.Combine(fileRepo.GetUploadPath(), fileName);
-            if (System.IO.File.Exists(savedPath))
-            {
-                System.IO.File.Delete(savedPath);
-            }
-
-            //System.IO.File.WriteAllBytes(savedPath, buffer);
-            //var base64 = Convert.ToBase64String(buffer);
-
-            await using var stream = new FileStream(savedPath, FileMode.Create, FileAccess.Write, FileShare.None, 1024);
-            await file.CopyToAsync(stream);
-
-            var newFile = new Models.File();
-            newFile.Id = id ?? newFile.Id;
-            newFile.Path = savedPath;
-            await fileRepo.Add(newFile);
-
-            return newFile;
-        }
     }
 
     public class TMutateResolver<TEntity>

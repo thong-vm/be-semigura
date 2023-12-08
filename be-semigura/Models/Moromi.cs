@@ -20,6 +20,7 @@ public class Moromi : IEntity
     public TimeSpan? Datetime { get; set; }
     [MaxLength(10)]
     public string? Bmd { get; set; }
+    [MaxLength(10)]
     public string? RoomTemperature { get; set; }
     [MaxLength(10)]
     public string? ProductTemperature { get; set; }

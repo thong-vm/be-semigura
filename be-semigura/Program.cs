@@ -85,30 +85,21 @@ builder.Services
     });
 
 // add repositories
-builder.Services.AddScoped<TRepository<Models.File, ApplicationDbContext>, FileRepository>();
 builder.Services.AddScoped<TRepository<User, ApplicationDbContext>, UserRepository>();
-builder.Services.AddScoped<TRepository<Delivery, ApplicationDbContext>, DeliveryRepository>();
-builder.Services.AddScoped<TRepository<Product, ApplicationDbContext>, ProductRepository>();
-builder.Services.AddScoped<TRepository<Truck, ApplicationDbContext>, TruckRepository>();
-builder.Services.AddScoped<TRepository<Area, ApplicationDbContext>, AreaRepository>();
 builder.Services.AddScoped<TRepository<Moromi, ApplicationDbContext>, MoromiRepository>();
 
 // add graphQL
 builder.Services.AddGraphQLServer()
     .AddAuthorization()
     .AddTypeExtension<UserExtensions>()
-    .AddTypeExtension<FileTypeExtensions>()
     .AddProjections()
     .AddFiltering()
     .AddSorting()
     .AddType<UploadType>()
     .AddInMemorySubscriptions()
     .AddQueryType<Query>()
-        .AddType<TQueryTypeExtension<Models.File>>()
     .AddMutationType<Mutation>()
-        .AddType<TMutateTypeExtension<Models.File>>()
     .AddSubscriptionType<Subscription>()
-        .AddTypeExtension<TSubscriptionTypeExtension<Models.File>>()
     ;
 
 builder.Services.AddControllers()

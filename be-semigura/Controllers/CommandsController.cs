@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using be_semigura.Models;
+using Data;
 using Logger;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -36,10 +37,7 @@ public class CommandsController : ControllerBase
 
     class BackupData
     {
-        public List<Truck>? Trucks { get; set; }
-        public List<Delivery>? Deliverys { get; set; }
-        public List<Area>? Areas { get; set; }
-        public List<Product>? Products { get; set; }
+        public List<Moromi>? Moromis { get; set; }
     }
 
     // POST: api/commands
@@ -71,37 +69,17 @@ public class CommandsController : ControllerBase
 
                 case "backup":
                     {
-                        var trucks = _db.Set<Truck>().ToList();
-                        var deliverys = _db.Set<Delivery>().ToList();
-                        var areas = _db.Set<Area>().ToList();
-                        var products = _db.Set<Product>().ToList();
-                        var data = new BackupData { Trucks = trucks, Deliverys = deliverys, Areas = areas, Products = products };
+                        var moromis = _db.Set<Moromi>().ToList();
+                        var data = new BackupData { Moromis = moromis };
                         return Ok(data);
                     }
                 case "restore":
                     {
                         var data = command.Data?.FromJson<BackupData>() ?? throw new Exception("Json data error!");
-                        if (data.Trucks!=null)
+                        if (data.Moromis != null)
                         {
-                            var trucks = _db.Set<Truck>().Select(x => x.Id).ToList();
-                            _db.Set<Truck>().AddRange(data.Trucks.Where(t => !trucks.Contains(t.Id)));
-                        }
-                        
-                        if (data.Deliverys!=null) {
-                            var deliverys = _db.Set<Delivery>().Select(x=>x.Id).ToList();
-                            _db.Set<Delivery>().AddRange(data.Deliverys.Where(t => !deliverys.Contains(t.Id)));
-                        }
-
-                        if (data.Areas != null)
-                        {
-                            var areas = _db.Set<Area>().Select(x=>x.Id).ToList();
-                            _db.Set<Area>().AddRange(data.Areas.Where(t => !areas.Contains(t.Id)));
-                        }
-
-                        if (data.Products != null)
-                        {
-                            var products = _db.Set<Product>().Select(x => x.Id).ToList();
-                            _db.Set<Product>().AddRange(data.Products.Where(t => !products.Contains(t.Id)));
+                            var moromis = _db.Set<Moromi>().Select(x => x.Id).ToList();
+                            _db.Set<Moromi>().AddRange(data.Moromis.Where(t => !moromis.Contains(t.Id)));
                         }
 
                         _db.SaveChanges();
