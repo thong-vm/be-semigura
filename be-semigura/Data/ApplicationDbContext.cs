@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using be_semigura.Models;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace Data
@@ -20,6 +21,7 @@ namespace Data
         public DbSet<Product> Products => base.Set<Product>();
         public DbSet<Truck> Trucks => base.Set<Truck>();
         public DbSet<Area> Areas => base.Set<Area>();
+        public DbSet<Moromi> Moromis => base.Set<Moromi>();
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

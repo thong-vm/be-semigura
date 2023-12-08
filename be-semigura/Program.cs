@@ -1,3 +1,5 @@
+using be_semigura.Models;
+using be_semigura.Repositories;
 using Data;
 using GraphQL;
 #if !DEBUG
@@ -89,6 +91,7 @@ builder.Services.AddScoped<TRepository<Delivery, ApplicationDbContext>, Delivery
 builder.Services.AddScoped<TRepository<Product, ApplicationDbContext>, ProductRepository>();
 builder.Services.AddScoped<TRepository<Truck, ApplicationDbContext>, TruckRepository>();
 builder.Services.AddScoped<TRepository<Area, ApplicationDbContext>, AreaRepository>();
+builder.Services.AddScoped<TRepository<Moromi, ApplicationDbContext>, MoromiRepository>();
 
 // add graphQL
 builder.Services.AddGraphQLServer()
