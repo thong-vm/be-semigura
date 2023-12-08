@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\be_semigura.props" />
+</Project>

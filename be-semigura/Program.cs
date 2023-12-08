@@ -143,6 +143,6 @@ app.MapControllers();
 
 app.MapGraphQL("/graphql");
 
-app.MapFallbackToFile("index.html"); ;
+//app.MapFallbackToFile("index.html"); ;
 
 app.Run();

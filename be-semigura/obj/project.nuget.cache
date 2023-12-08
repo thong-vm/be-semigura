@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8CcikeDlHAgVwFBtIUEUhbINn7RV33GajTk8Az2aHRwv/1RbVvqLIoYn2y1Njuy7V3v/8cSwoFi6JtC1QSmvjQ==",
+  "dgSpecHash": "XnMnpGQobwLt2Ctnd3i4XqmSGRE3zlCyHlQ+Vf6/BqBQT3UcKqrzPkp0g59LR0c8WxVCgOv2yohYUU+AUT5ctg==",
   "success": true,
-  "projectFilePath": "c:\\WORK\\semigura\\be-semigura\\be-semigura\\be-semigura.csproj",
+  "projectFilePath": "C:\\WORK\\semigura\\be-semigura\\be-semigura\\be_semigura.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\graphql\\5.3.0\\graphql.5.3.0.nupkg.sha512",
@@ -36,7 +36,6 @@
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.16\\microsoft.aspnetcore.authentication.jwtbearer.6.0.16.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.authorization\\3.1.4\\microsoft.aspnetcore.authorization.3.1.4.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.metadata\\3.1.4\\microsoft.aspnetcore.metadata.3.1.4.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\6.0.10\\microsoft.aspnetcore.spaproxy.6.0.10.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
