@@ -1,0 +1,8 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "",
+"LaunchCommand": "",
+"WorkingDirectory": "C:\\WORK\\semigura\\be-semigura\\be-semigura",
+"MaxTimeoutInSeconds": "120"
+}
+}
