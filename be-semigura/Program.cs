@@ -9,11 +9,18 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Models;
+using Newtonsoft.Json;
 using Repositories;
 using System.Text;
+using System.Text.Json.Serialization;
 using Template;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
 
 // Add services to the container.
 
@@ -26,7 +33,6 @@ builder.Host.ConfigureLogging((hostContext, logBuilder) =>
                 hostContext.Configuration.GetSection("Logging").GetSection("RoundTheCodeFile").GetSection("Options").Bind(configuration);
             }));
 #endif
-
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
     serverOptions.Limits.MaxRequestBodySize = long.MaxValue;
@@ -87,6 +93,7 @@ builder.Services
 // add repositories
 builder.Services.AddScoped<TRepository<User, ApplicationDbContext>, UserRepository>();
 builder.Services.AddScoped<TRepository<Moromi, ApplicationDbContext>, MoromiRepository>();
+builder.Services.AddScoped<TRepository<Batch, ApplicationDbContext>, BatchRepository>();
 
 // add graphQL
 builder.Services.AddGraphQLServer()
@@ -98,8 +105,11 @@ builder.Services.AddGraphQLServer()
     .AddType<UploadType>()
     .AddInMemorySubscriptions()
     .AddQueryType<Query>()
+    .AddType<TQueryTypeExtension<Moromi>>()
     .AddMutationType<Mutation>()
+     .AddType<TMutateTypeExtension<Moromi>>()
     .AddSubscriptionType<Subscription>()
+    .AddTypeExtension<TSubscriptionTypeExtension<Moromi>>()
     ;
 
 builder.Services.AddControllers()

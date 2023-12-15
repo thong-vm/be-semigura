@@ -22,28 +22,53 @@ namespace be_semigura.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("be_semigura.Models.Batch", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<DateTime?>("Time")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Batch");
+                });
+
             modelBuilder.Entity("be_semigura.Models.Moromi", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(32)");
 
+                    b.Property<string>("Acidity")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
                     b.Property<string>("AlcoholContent")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("AminoAcidContent")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("BatchId")
+                        .IsRequired()
+                        .HasColumnType("varchar(32)");
 
                     b.Property<string>("Baume")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<string>("Bmd")
+                    b.Property<string>("DailyOrder")
+                        .HasColumnType("varchar(32)");
+
+                    b.Property<string>("Glucose")
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
-
-                    b.Property<TimeSpan?>("Datetime")
-                        .HasColumnType("time");
-
-                    b.Property<string>("Day")
-                        .HasColumnType("varchar(32)");
 
                     b.Property<string>("JapanSakeLevel")
                         .HasMaxLength(10)
@@ -57,7 +82,12 @@ namespace be_semigura.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
+                    b.Property<DateTime?>("Time")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("BatchId");
 
                     b.ToTable("Moromi");
                 });
@@ -98,6 +128,22 @@ namespace be_semigura.Migrations
                     b.HasIndex("Account");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("be_semigura.Models.Moromi", b =>
+                {
+                    b.HasOne("be_semigura.Models.Batch", "Batch")
+                        .WithMany("Moromis")
+                        .HasForeignKey("BatchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Batch");
+                });
+
+            modelBuilder.Entity("be_semigura.Models.Batch", b =>
+                {
+                    b.Navigation("Moromis");
                 });
 #pragma warning restore 612, 618
         }

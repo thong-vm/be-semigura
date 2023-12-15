@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using be_semigura.Models;
+using Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Template
@@ -35,12 +36,26 @@ namespace Template
 
         public IQueryable<TEntity> Get(string id)
         {
-            return context.Set<TEntity>().Where(e => e.Id == id);
+            IQueryable<TEntity> query = context.Set<TEntity>().Where(e => e.Id == id);
+
+            if (typeof(TEntity) == typeof(Batch))
+            {
+                query = query.Include("Moromis");
+            }
+
+            return query;
         }
 
         public IQueryable<TEntity> GetAll()
         {
-            return context.Set<TEntity>();
+            IQueryable<TEntity> query = context.Set<TEntity>();
+
+            if (typeof(TEntity) == typeof(Batch))
+            {
+                query = query.Include("Moromis");
+            }
+
+            return query;
         }
 
         public virtual async Task<int> Update(TEntity entity)

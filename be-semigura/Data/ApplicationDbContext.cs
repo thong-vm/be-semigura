@@ -17,9 +17,17 @@ namespace Data
 
         public DbSet<User> Users => Set<User>();
         public DbSet<Moromi> Moromis => base.Set<Moromi>();
+        public DbSet<Batch> Batches => base.Set<Batch>();
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Batch>()
+            .HasKey(b => b.Id);
 
+            modelBuilder.Entity<Moromi>()
+                .HasOne(m => m.Batch)
+                .WithMany(b => b.Moromis)
+                .HasForeignKey(m => m.BatchId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

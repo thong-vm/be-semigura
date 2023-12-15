@@ -1,5 +1,4 @@
 ﻿using Interfaces;
-using Microsoft.EntityFrameworkCore;
 using Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,10 +15,8 @@ public class Moromi : IEntity
     public string? Id { get; set; } = ModelsHelper.NewId();
 
     [Column(TypeName = "varchar(32)")]
-    public string? Day { get; set; }
-    public TimeSpan? Datetime { get; set; }
-    [MaxLength(10)]
-    public string? Bmd { get; set; }
+    public string? DailyOrder { get; set; }
+    public DateTime? Time { get; set; }
     [MaxLength(10)]
     public string? RoomTemperature { get; set; }
     [MaxLength(10)]
@@ -30,5 +27,14 @@ public class Moromi : IEntity
     public string? JapanSakeLevel { get; set; }
     [MaxLength(10)]
     public string? AlcoholContent { get; set; }
+    [MaxLength(10)]
+    public string? Acidity { get; set; }
+    [MaxLength(10)]
+    public string? AminoAcidContent { get; set; }
+    [MaxLength(10)]
+    public string? Glucose { get; set; }
+    // Fogein key
+    public string? BatchId { get; set; }
+    public Batch? Batch { get; set; }
 
 }
