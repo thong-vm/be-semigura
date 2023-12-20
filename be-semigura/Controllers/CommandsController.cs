@@ -1,5 +1,4 @@
-﻿using be_semigura.Models;
-using Data;
+﻿using Data;
 using Logger;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -37,7 +36,7 @@ public class CommandsController : ControllerBase
 
     class BackupData
     {
-        public List<Moromi>? Moromis { get; set; }
+        public List<Factory>? Factories { get; set; }
     }
 
     // POST: api/commands
@@ -69,17 +68,17 @@ public class CommandsController : ControllerBase
 
                 case "backup":
                     {
-                        var moromis = _db.Set<Moromi>().ToList();
-                        var data = new BackupData { Moromis = moromis };
+                        var datas = _db.Set<Factory>().ToList();
+                        var data = new BackupData { Factories = datas };
                         return Ok(data);
                     }
                 case "restore":
                     {
                         var data = command.Data?.FromJson<BackupData>() ?? throw new Exception("Json data error!");
-                        if (data.Moromis != null)
+                        if (data.Factories != null)
                         {
-                            var moromis = _db.Set<Moromi>().Select(x => x.Id).ToList();
-                            _db.Set<Moromi>().AddRange(data.Moromis.Where(t => !moromis.Contains(t.Id)));
+                            var moromis = _db.Set<Factory>().Select(x => x.Id).ToList();
+                            _db.Set<Factory>().AddRange(data.Factories.Where(t => !moromis.Contains(t.Id)));
                         }
 
                         _db.SaveChanges();

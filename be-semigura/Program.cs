@@ -1,5 +1,3 @@
-using be_semigura.Models;
-using be_semigura.Repositories;
 using Data;
 using GraphQL;
 #if !DEBUG
@@ -9,7 +7,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Models;
-using Newtonsoft.Json;
 using Repositories;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -60,13 +57,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 builder.Services.AddCors(options =>
 {
-    //options.AddPolicy(MyAllowSpecificOrigins,
-    //   policy =>
-    //   {
-    //       policy.WithOrigins("https://localhost:8080", "https://localhost:3000")
-    //       .WithMethods("PUT", "DELETE", "GET");
-    //   });
-
     options.AddPolicy(MyAllowSpecificOrigins,
                       policy =>
                       {
@@ -92,8 +82,15 @@ builder.Services
 
 // add repositories
 builder.Services.AddScoped<TRepository<User, ApplicationDbContext>, UserRepository>();
-builder.Services.AddScoped<TRepository<Moromi, ApplicationDbContext>, MoromiRepository>();
-builder.Services.AddScoped<TRepository<Batch, ApplicationDbContext>, BatchRepository>();
+builder.Services.AddScoped<TRepository<Factory, ApplicationDbContext>, FactoryRepository>();
+builder.Services.AddScoped<TRepository<Container, ApplicationDbContext>, ContainerRepository>();
+builder.Services.AddScoped<TRepository<be_semigura.Models.Location, ApplicationDbContext>, LocationRepository>();
+builder.Services.AddScoped<TRepository<Lot, ApplicationDbContext>, LotRepository>();
+builder.Services.AddScoped<TRepository<LotContainer, ApplicationDbContext>, LotContainerRepository>();
+builder.Services.AddScoped<TRepository<LotContainerTerminal, ApplicationDbContext>, LotContainerTerminalRepository>();
+builder.Services.AddScoped<TRepository<Terminal, ApplicationDbContext>, TerminalRepository>();
+builder.Services.AddScoped<TRepository<SensorData, ApplicationDbContext>, SensorDataRepository>();
+builder.Services.AddScoped<TRepository<Material, ApplicationDbContext>, MaterialRepository>();
 
 // add graphQL
 builder.Services.AddGraphQLServer()
@@ -105,11 +102,35 @@ builder.Services.AddGraphQLServer()
     .AddType<UploadType>()
     .AddInMemorySubscriptions()
     .AddQueryType<Query>()
-    .AddType<TQueryTypeExtension<Moromi>>()
+    .AddType<TQueryTypeExtension<Factory>>()
+    .AddType<TQueryTypeExtension<Container>>()
+    .AddType<TQueryTypeExtension<be_semigura.Models.Location>>()
+    .AddType<TQueryTypeExtension<Lot>>()
+    .AddType<TQueryTypeExtension<LotContainer>>()
+    .AddType<TQueryTypeExtension<LotContainerTerminal>>()
+    .AddType<TQueryTypeExtension<Terminal>>()
+    .AddType<TQueryTypeExtension<SensorData>>()
+    .AddType<TQueryTypeExtension<Material>>()
     .AddMutationType<Mutation>()
-     .AddType<TMutateTypeExtension<Moromi>>()
+     .AddType<TMutateTypeExtension<Factory>>()
+     .AddType<TMutateTypeExtension<Container>>()
+     .AddType<TMutateTypeExtension<be_semigura.Models.Location>>()
+     .AddType<TMutateTypeExtension<Lot>>()
+     .AddType<TMutateTypeExtension<LotContainer>>()
+     .AddType<TMutateTypeExtension<LotContainerTerminal>>()
+     .AddType<TMutateTypeExtension<Terminal>>()
+     .AddType<TMutateTypeExtension<SensorData>>()
+     .AddType<TMutateTypeExtension<Material>>()
     .AddSubscriptionType<Subscription>()
-    .AddTypeExtension<TSubscriptionTypeExtension<Moromi>>()
+    .AddTypeExtension<TSubscriptionTypeExtension<Factory>>()
+    .AddTypeExtension<TSubscriptionTypeExtension<Container>>()
+    .AddTypeExtension<TSubscriptionTypeExtension<be_semigura.Models.Location>>()
+    .AddTypeExtension<TSubscriptionTypeExtension<Lot>>()
+    .AddTypeExtension<TSubscriptionTypeExtension<LotContainer>>()
+    .AddTypeExtension<TSubscriptionTypeExtension<LotContainerTerminal>>()
+    .AddTypeExtension<TSubscriptionTypeExtension<Terminal>>()
+    .AddTypeExtension<TSubscriptionTypeExtension<SensorData>>()
+    .AddTypeExtension<TSubscriptionTypeExtension<Material>>()
     ;
 
 builder.Services.AddControllers()
@@ -121,13 +142,6 @@ builder.Services.AddControllers()
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-//if (!app.Environment.IsDevelopment())
-//{
-//    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-//    app.UseHsts();
-//}
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
@@ -136,14 +150,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller}/{action=Index}/{id?}");
-
 app.MapControllers();
 
 app.MapGraphQL("/graphql");
-
-//app.MapFallbackToFile("index.html"); ;
 
 app.Run();
