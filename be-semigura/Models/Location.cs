@@ -18,4 +18,5 @@ public class Location : AuditableEntityBase
 
     public List<LotContainer>? LotContainers { get; set; }
     public List<Container>? Containers { get; set; }
+
 }

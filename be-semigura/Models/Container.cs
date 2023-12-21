@@ -15,6 +15,7 @@ public class Container : AuditableEntityBase
     public double? Height { get; set; }
     public Boolean? DeleteFlg { get; set; }
     public List<LotContainer>? LotContainers { get; set; }
+    public List<DataEntry>? DataEntrys { get; set; }
     public be_semigura.Models.Location? Location { get; set; }
 
 }

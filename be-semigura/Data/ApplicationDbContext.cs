@@ -24,6 +24,7 @@ namespace Data
         public DbSet<SensorData> SensorDatas => base.Set<SensorData>();
         public DbSet<Terminal> Terminals => base.Set<Terminal>();
         public DbSet<Material> Materials => base.Set<Material>();
+        public DbSet<DataEntry> DataEntries => base.Set<DataEntry>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,6 +38,8 @@ namespace Data
             modelBuilder.Entity<LotContainerTerminal>().HasOne(lct => lct.LotContainer).WithMany(lc => lc.LotContainerTerminals).HasForeignKey(lct => lct.LotContainerId);
             modelBuilder.Entity<LotContainerTerminal>().HasOne(lct => lct.Terminal).WithMany(t => t.LotContainerTerminals).HasForeignKey(lct => lct.TerminalId);
             modelBuilder.Entity<Container>().HasOne(c => c.Location).WithMany(l => l.Containers).HasForeignKey(c => c.LocationId);
+            modelBuilder.Entity<DataEntry>().HasOne(de => de.Container).WithMany(c => c.DataEntrys).HasForeignKey(de => de.ContainerId);
+            modelBuilder.Entity<DataEntry>().HasOne(de => de.LotContainer).WithMany(c => c.DataEntrys).HasForeignKey(l => l.LotContainerId);
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

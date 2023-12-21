@@ -22,6 +22,8 @@ public class LotContainer : AuditableEntityBase
     public string? Note { get; set; }
     public List<SensorData>? SensorDatas { get; set; }
     public List<LotContainerTerminal>? LotContainerTerminals { get; set; }
+    public List<DataEntry>? DataEntrys { get; set; }
+
     public Lot? Lot { get; set; }
     public Container? Container { get; set; }
     public be_semigura.Models.Location? Location { get; set; }
