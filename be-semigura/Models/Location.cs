@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace be_semigura.Models;
 
 [Table("Location")]
-public class Location: AuditableEntityBase
+public class Location : AuditableEntityBase
 {
     [Column(TypeName = "varchar(100)")]
     public string? Code { get; set; }
@@ -14,5 +14,6 @@ public class Location: AuditableEntityBase
     [Column(TypeName = "varchar(100)")]
 
     public string? FactoryId { get; set; }
+    public Factory? Factory { get; set; }
 
 }

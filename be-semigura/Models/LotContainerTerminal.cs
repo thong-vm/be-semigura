@@ -11,4 +11,6 @@ public class LotContainerTerminal : AuditableEntityBase
     public string? TerminalId { get; set; }
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
+    public LotContainer? LotContainer { get; set; }
+    public Terminal? Terminal { get; set; }
 }

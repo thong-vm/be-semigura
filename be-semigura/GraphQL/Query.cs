@@ -54,6 +54,4 @@ namespace GraphQL
                 .UseProjection();
         }
     }
-
-
 }

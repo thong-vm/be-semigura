@@ -1,5 +1,6 @@
 ﻿using Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Models;
 
 namespace Template
 {
@@ -36,14 +37,28 @@ namespace Template
         public IQueryable<TEntity> Get(string id)
         {
             IQueryable<TEntity> query = context.Set<TEntity>().Where(e => e.Id == id);
-
+            switch (typeof(TEntity))
+            {
+                case Type terminalType when terminalType == typeof(Terminal): query = query.Include("SensorDatas").Include("LotContainerTerminals"); break;
+                case Type terminalType when terminalType == typeof(LotContainer): query = query.Include("SensorDatas").Include("LotContainerTerminals"); break;
+                case Type terminalType when terminalType == typeof(Lot): query = query.Include("LotContainers.SensorDatas"); break;
+                case Type terminalType when terminalType == typeof(Factory): query = query.Include("Lots.LotContainers.SensorDatas"); break;
+                default: break;
+            }
             return query;
         }
 
         public IQueryable<TEntity> GetAll()
         {
             IQueryable<TEntity> query = context.Set<TEntity>();
-
+            switch (typeof(TEntity))
+            {
+                case Type terminalType when terminalType == typeof(Terminal): query = query.Include("SensorDatas").Include("LotContainerTerminals"); ; break;
+                case Type terminalType when terminalType == typeof(LotContainer): query = query.Include("SensorDatas").Include("LotContainerTerminals"); break;
+                case Type terminalType when terminalType == typeof(Lot): query = query.Include("LotContainers.SensorDatas"); break;
+                case Type terminalType when terminalType == typeof(Factory): query = query.Include("Lots.LotContainers.SensorDatas"); break;
+                default: break;
+            }
             return query;
         }
 

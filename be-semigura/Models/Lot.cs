@@ -13,9 +13,12 @@ public class Lot : AuditableEntityBase
     public string? MaterialId { get; set; }
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
-    public int? MaterialClassification {  get; set; }
+    public int? MaterialClassification { get; set; }
     [Column(TypeName = "varchar(100)")]
     public string? RicePolishingRatioName { get; set; }
     public double? RicePolishingRatio { get; set; }
+
+    public List<LotContainer>? LotContainers { get; set; }
+    public Factory? Factory { get; set; }
 
 }

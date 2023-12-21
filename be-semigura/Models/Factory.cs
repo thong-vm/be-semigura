@@ -19,5 +19,9 @@ namespace Models
 
         [Column(TypeName = "varchar(5)")]
         public string? CountryCode { get; set; }
+
+
+        public List<Lot>? Lots { get; set; }
+        public List<be_semigura.Models.Location>? Locations { get; set; }
     }
 }

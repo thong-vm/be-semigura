@@ -27,6 +27,13 @@ namespace Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<SensorData>().HasOne(sd => sd.Terminal).WithMany(t => t.SensorDatas).HasForeignKey(sd => sd.TerminalId);
+            modelBuilder.Entity<SensorData>().HasOne(sd => sd.LotContainer).WithMany(lc => lc.SensorDatas).HasForeignKey(sd => sd.LotContainerId);
+            modelBuilder.Entity<LotContainer>().HasOne(lc => lc.Lot).WithMany(l => l.LotContainers).HasForeignKey(lc => lc.LotId);
+            modelBuilder.Entity<Lot>().HasOne(l => l.Factory).WithMany(f => f.Lots).HasForeignKey(l => l.FactoryId);
+            modelBuilder.Entity<be_semigura.Models.Location>().HasOne(l => l.Factory).WithMany(f => f.Locations).HasForeignKey(l => l.FactoryId);
+            modelBuilder.Entity<LotContainerTerminal>().HasOne(lct => lct.LotContainer).WithMany(lc => lc.LotContainerTerminals).HasForeignKey(lct => lct.LotContainerId);
+            modelBuilder.Entity<LotContainerTerminal>().HasOne(lct => lct.Terminal).WithMany(t => t.LotContainerTerminals).HasForeignKey(lct => lct.TerminalId);
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

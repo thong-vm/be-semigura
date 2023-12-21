@@ -22,4 +22,8 @@ public class LotContainer : AuditableEntityBase
     [Column(TypeName = "varchar(500)")]
     public string? Note { get; set; }
 
+    public List<SensorData>? SensorDatas { get; set; }
+    public List<LotContainerTerminal>? LotContainerTerminals { get; set; }
+    public Lot? Lot { get; set; }
+
 }

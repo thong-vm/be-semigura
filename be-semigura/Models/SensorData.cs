@@ -16,4 +16,7 @@ public class SensorData : AuditableEntityBase
     public double? Humidity { get; set; }
     public DateTime? MeasureDate { get; set; }
 
+    public Terminal? Terminal { get; set; }
+    public LotContainer? LotContainer { get; set; }
+
 }

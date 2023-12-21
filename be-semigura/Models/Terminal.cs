@@ -19,4 +19,6 @@ public class Terminal : AuditableEntityBase
     public string? Password { get; set; }
     public Boolean? DeleteFlg { get; set; }
 
+    public List<SensorData>? SensorDatas { get; set; }
+    public List<LotContainerTerminal>? LotContainerTerminals { get; set; }
 }
