@@ -16,4 +16,6 @@ public class Location : AuditableEntityBase
     public string? FactoryId { get; set; }
     public Factory? Factory { get; set; }
 
+    public List<LotContainer>? LotContainers { get; set; }
+    public List<Container>? Containers { get; set; }
 }
